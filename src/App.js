@@ -23,11 +23,14 @@ updateOption = (opt,book) => {
 
 		console.log(opt)
 		console.log(book)
-		
-		BooksAPI.update(book, opt)
-		console.log(BooksAPI.get(book.id))    
-		BooksAPI.get(book.id).then((book) => {this.setState({book})
+		//here Kelli - Changed 
+		BooksAPI.update(book, opt).then(BooksAPI.getAll().then((books) => {this.setState({books})
 		})
+		)	
+		
+		console.log(BooksAPI.get(book.id))    
+		//BooksAPI.get(book.id).then((book) => {this.setState({book})
+		//})
 		let optCopy = JSON.parse(JSON.stringify(this.state.optionState))
 		
 		optCopy.id = book.id
@@ -36,9 +39,9 @@ updateOption = (opt,book) => {
 		this.setState((state) => ({
 			optionState : optCopy
 		}))
-		BooksAPI.getAll().then((books) => {this.setState({books})
-		console.log(BooksAPI.getAll())
-		})
+		//BooksAPI.getAll().then((books) => {this.setState({books})
+		//console.log(BooksAPI.getAll())
+		//})
 }
   
 
