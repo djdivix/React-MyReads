@@ -24,7 +24,7 @@ updateOption = (opt,book) => {
 		console.log(opt)
 		console.log(book)
 		//here Kelli - Changed 
-		BooksAPI.update(book, opt).then(BooksAPI.getAll().then((books) => {this.setState({books})
+		BooksAPI.update(book, opt).then(BooksAPI.getAll().then((books) => {this.setState((state) => ({books : books}))
 		})
 		)	
 		

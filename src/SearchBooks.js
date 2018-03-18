@@ -14,24 +14,26 @@
 		query : q.trim()	
 		})
 		)
+		BooksAPI.search(q.trim()).then((showingBooks)=> {this.setState({showingBooks})
+	})
 	}
 	render()
 	{
-		
+	let showBooks = this.state.showingBooks
+	
 	if(this.state.query)
 	{
 		console.log(this.state.query)
-		BooksAPI.search(this.state.query).then((showingBooks)=> {this.setState({showingBooks})
-	})
-	console.log(this.state.showingBooks)
-	if(this.state.showingBooks.error === "empty query") {
-		console.log("CHECK")
-		this.state.showingBooks=this.props.books
+		console.log(showBooks)
+		if(showBooks.error === "empty query") 
+		{
+			console.log("CHECK")
+			showBooks = this.props.books
 		}
 	}
 	else
 	{
-		this.state.showingBooks = this.props.books
+			showBooks = this.props.books
 	}
 	return(
           <div className="search-books">
@@ -43,7 +45,7 @@
             </div>
             <div className="search-books-results">
               <ol className="books-grid">
-			  {this.state.showingBooks.map(book => 
+			  {showBooks.map(book => 
 				<li key={book.id} className = 'book'>
 					<div className="book-top">
                             <div className="book-cover" style={{ width: 128, height: 188, backgroundImage:`url(${book.imageLinks.smallThumbnail})`}}></div>
