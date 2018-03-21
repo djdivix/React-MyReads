@@ -1,6 +1,7 @@
  import React ,{Component} from 'react'
  import * as BooksAPI from './BooksAPI'
  import {Link} from 'react-router-dom'
+ import Book from './Book'
  
  class  SearchBooks extends Component
  {
@@ -14,27 +15,18 @@
 		query : q.trim()	
 		})
 		)
-		BooksAPI.search(q.trim()).then((showingBooks)=> {this.setState({showingBooks})
-	})
+	BooksAPI.search(q.trim()).then((showingBooks)=> {this.setState({showingBooks})})
 	}
+	
 	render()
 	{
 	let showBooks = this.state.showingBooks
+	console.log(showBooks)
+	if(this.state.query=='')
+	{
+		showBooks = []
+	}
 	
-	if(this.state.query)
-	{
-		console.log(this.state.query)
-		console.log(showBooks)
-		if(showBooks.error === "empty query") 
-		{
-			console.log("CHECK")
-			showBooks = this.props.books
-		}
-	}
-	else
-	{
-			showBooks = this.props.books
-	}
 	return(
           <div className="search-books">
             <div className="search-books-bar">
@@ -50,11 +42,7 @@
 					<div className="book-top">
                             <div className="book-cover" style={{ width: 128, height: 188, backgroundImage:`url(${book.imageLinks.smallThumbnail})`}}></div>
                             <div className="book-shelf-changer">
-                              <select onChange={(event) => this.props.onUpdate(event.target.value,book)} value = {this.props.optState.id == book.id ? this.props.optState.opt:book.shelf}>
-								{this.props.options.map(option => 
-								<option key={option.id} value={option.value}>{option.label}</option>
-								)}
-                              </select>
+                              <Book currBook = {book} onUpd = {this.props.onUpdate}/>
                             </div>
                           </div>
 				<div className = 'book-title'>{book.title}</div>

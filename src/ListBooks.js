@@ -1,6 +1,7 @@
  import React ,{Component} from 'react'
  import * as BooksAPI from './BooksAPI'
  import {Link} from 'react-router-dom'
+ import Book from './Book'
  
   class ListBooks extends Component
  {
@@ -22,11 +23,7 @@
 					<div className="book-top">
                             <div className="book-cover" style={{ width: 128, height: 188, backgroundImage:`url(${book.imageLinks.smallThumbnail})`}}></div>
                             <div className="book-shelf-changer">
-                               <select value="currentlyReading">
-								{this.props.options.map(option => 
-								<option key={option.id} value={option.value}>{option.label}</option>
-								)}
-                              </select>
+                               <Book currBook = {book} onUpd = {this.props.onUpdate}/>
                             </div>
                           </div>
 				<div className = 'book-title'>{book.title}</div>
@@ -45,11 +42,7 @@
 					<div className="book-top">
                             <div className="book-cover" style={{ width: 128, height: 188, backgroundImage:`url(${book.imageLinks.smallThumbnail})`}}></div>
                             <div className="book-shelf-changer">
-                               <select value="wantToRead">
-								{this.props.options.map(option => 
-								<option key={option.id} value={option.value}>{option.label}</option>
-								)}
-                              </select>
+                               <Book currBook = {book} onUpd = {this.props.onUpdate}/>
                             </div>
                           </div>
 				<div className = 'book-title'>{book.title}</div>
@@ -68,11 +61,7 @@
 					<div className="book-top">
                             <div className="book-cover" style={{ width: 128, height: 188, backgroundImage:`url(${book.imageLinks.smallThumbnail})`}}></div>
                             <div className="book-shelf-changer">
-                              <select value="read">
-								{this.props.options.map(option => 
-								<option key={option.id} value={option.value}>{option.label}</option>
-								)}
-                              </select>
+                              <Book currBook = {book} onUpd = {this.props.onUpdate}/>
                             </div>
                           </div>
 				<div className = 'book-title'>{book.title}</div>
