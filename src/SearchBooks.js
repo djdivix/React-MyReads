@@ -15,7 +15,20 @@
 		query : q.trim()	
 		})
 		)
-	BooksAPI.search(q.trim()).then((showingBooks)=> {this.setState({showingBooks})})
+
+	BooksAPI.search(q.trim(), 20).then(showingBooks => {
+
+    this.props.books.forEach((book) => {
+
+    let tempBook = showingBooks.find((result) => result.id === book.id)
+    if (tempBook) {
+      tempBook.shelf = book.shelf
+    }
+  })
+
+  this.setState({ showingBooks })  
+})
+	
 	}
 	
 	render()
