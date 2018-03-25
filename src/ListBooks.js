@@ -3,10 +3,8 @@
  import {Link} from 'react-router-dom'
  import Book from './Book'
  
-  class ListBooks extends Component
+function ListBooks(props)
  {
-	render()
-	{
 	return(
 	<div className="list-books">
             <div className="list-books-title">
@@ -18,12 +16,12 @@
                   <h2 className="bookshelf-title">Currently Reading</h2>
                   <div className="bookshelf-books">
                    <ol className="books-grid">
-			  {this.props.books.filter(book => book.shelf == "currentlyReading").map(book =>
+			  {props.books.filter(book => book.shelf == "currentlyReading").map(book =>
 				<li key={book.id} className = 'book'>
 					<div className="book-top">
                             <div className="book-cover" style={{ width: 128, height: 188, backgroundImage:`url(${book.imageLinks.smallThumbnail})`}}></div>
                             <div className="book-shelf-changer">
-                               <Book currBook = {book} onUpd = {this.props.onUpdate}/>
+                               <Book currBook = {book} onUpd = {props.onUpdate}/>
                             </div>
                           </div>
 				<div className = 'book-title'>{book.title}</div>
@@ -37,12 +35,12 @@
                   <h2 className="bookshelf-title">Want to Read</h2>
                   <div className="bookshelf-books">
                     <ol className="books-grid">
-			  {this.props.books.filter(book => book.shelf == "wantToRead").map(book =>
+			  {props.books.filter(book => book.shelf == "wantToRead").map(book =>
 				<li key={book.id} className = 'book'>
 					<div className="book-top">
                             <div className="book-cover" style={{ width: 128, height: 188, backgroundImage:`url(${book.imageLinks.smallThumbnail})`}}></div>
                             <div className="book-shelf-changer">
-                               <Book currBook = {book} onUpd = {this.props.onUpdate}/>
+                               <Book currBook = {book} onUpd = {props.onUpdate}/>
                             </div>
                           </div>
 				<div className = 'book-title'>{book.title}</div>
@@ -56,12 +54,12 @@
                   <h2 className="bookshelf-title">Read</h2>
                   <div className="bookshelf-books">
                     <ol className="books-grid">
-			  {this.props.books.filter(book => book.shelf == "read").map(book =>
+			  {props.books.filter(book => book.shelf == "read").map(book =>
 				<li key={book.id} className = 'book'>
 					<div className="book-top">
                             <div className="book-cover" style={{ width: 128, height: 188, backgroundImage:`url(${book.imageLinks.smallThumbnail})`}}></div>
                             <div className="book-shelf-changer">
-                              <Book currBook = {book} onUpd = {this.props.onUpdate}/>
+                              <Book currBook = {book} onUpd = {props.onUpdate}/>
                             </div>
                           </div>
 				<div className = 'book-title'>{book.title}</div>
@@ -77,7 +75,6 @@
               <Link to = '/search'>Add a book</Link>
             </div>
 		</div>
-		)
-	}
- }
+	)
+}
  export default ListBooks

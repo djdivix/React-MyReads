@@ -47,7 +47,6 @@
 	{
 	let showBooks = this.state.showingBooks
 	console.log(showBooks)
-	//typeof showbooks.imageLinks !== 'undefined'
 	if(this.state.query=='')
 	{
 		showBooks = []
