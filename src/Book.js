@@ -8,12 +8,13 @@ onUpdateopt = (opt,book) => {
     render()
     {
     console.log(this.props.currBook)
-	console.log(this.props.currBook.shelf)
+	console.log(!this.props.currBook.shelf?"none":this.props.currBook.shelf)
+	var selectval = !this.props.currBook.shelf?"none":this.props.currBook.shelf
 	
         return(
        
-        <select onChange={(event) => this.onUpdateopt(event.target.value,this.props.currBook)} value = {!this.props.currBook.shelf?"Move to...":this.props.currBook.shelf}>
-                                <option value="none" disabled>Move to...</option>
+        <select onChange={(event) => this.onUpdateopt(event.target.value,this.props.currBook)} value = {selectval}>
+                                <option value="none1" disabled>Move to...</option>
                                 <option value="currentlyReading">Currently Reading</option>
                                 <option value="wantToRead">Want to Read</option>
                                 <option value="read">Read</option>
